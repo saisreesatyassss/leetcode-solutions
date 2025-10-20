@@ -1,26 +1,22 @@
-// Last updated: 10/20/2025, 4:20:51 PM
+// Last updated: 10/20/2025, 5:12:48 PM
+import java.util.Arrays;
+
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        
-    //     for(int i=0;i<nums.length;i++){
-             
-    //         for(int j=i+1;j<nums.length;j++){
-    //             if(nums[i]+nums[j]==target){
-    //                 return new int[]{j, i};
-    //             }
-    //         }
-    //     }
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int[] arr = new int[nums1.length + nums2.length];
 
-    // return new int[]{0, 0};
+        // Copy elements
+        for (int i = 0; i < nums1.length; i++) arr[i] = nums1[i];
+        for (int i = 0; i < nums2.length; i++) arr[nums1.length + i] = nums2[i];
 
-    HashMap<Integer,Integer> map=new HashMap<>();
-    for(int i=0;i<nums.length;i++){
-        int x=target-nums[i];
-        if(map.containsKey(x)){
-            return new int[]{map.get(x),i};
+        // Sort the combined array
+        Arrays.sort(arr);
+
+        int n = arr.length;
+        if (n % 2 == 0) {
+            return (arr[n/2 - 1] + arr[n/2]) / 2.0;
+        } else {
+            return arr[n/2];
         }
-        map.put(nums[i],i);
-    }
- return new int[]{}; // no result
     }
 }
